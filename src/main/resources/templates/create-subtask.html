@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Subtask</title>
+</head>
+<body>
+
+<label th:text="${task.title}"></label>
+
+
+<form action="#" th:action="@{/subtask/{id}(id=${task.id})}" th:object="${subtask}" method="post">
+    <label for="title">Title</label>
+    <input type="text" th:field="*{title}" id="title"  >
+    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+    <label for="description">Description</label>
+    <input type="text" th:field="*{description}" id="description"  >
+    <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+    <input type="submit" value="Add Subtask">
+</form>
+</body>
+</html>

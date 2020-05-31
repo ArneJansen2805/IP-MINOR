@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+</head>
+<body>
+
+<div th:switch="${tasks}">
+
+        <h2>Tasks</h2>
+        <h2 th:if="${tasks.size() == 0}">No tasks left to do</h2>
+
+        <table th:if="${tasks.size() != 0}">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Details</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="task : ${tasks}">
+                <td th:text="${task.title}" ></td>
+                <td th:text="${task.date}"></td>
+                <td><a th:href="@{/detail/{id}(id=${task.id})}">Details</a></td>
+                <td><a th:href="@{/edit/{id}(id=${task.id})}">Edit</a></td>
+                <td><a th:href="@{/delete/{id}(id=${task.id})}">Delete</a></td>
+                <td><a th:href="@{/subtask/{id}(id=${task.id})}">Subtask</a></td>
+            </tr>
+
+            </tbody>
+        </table>
+
+
+    <select id="locales">
+        <option value=""></option>
+        <option value="fr" th:text="#{lang.nl}"></option>
+    </select>
+
+
+    <p><a href="/addtask">Add a new task</a></p>
+</div>
+</body>
+</html>
